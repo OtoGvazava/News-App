@@ -21,5 +21,32 @@
         <action
             android:id="@+id/action_newsDetailFragment_to_newsListFragment"
             app:destination="@id/newsListFragment" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="title" />
+        <argument
+            android:name="imageUri"
+            app:argType="string"
+            android:defaultValue="https://" />
+        <argument
+            android:name="content"
+            app:argType="string"
+            android:defaultValue="content" />
+        <argument
+            android:name="url"
+            app:argType="string"
+            android:defaultValue="https://" />
+        <argument
+            android:name="author"
+            app:argType="string"
+            android:defaultValue="author" />
+        <argument
+            android:name="source"
+            app:argType="string"
+            android:defaultValue="source" />
+        <argument
+            android:name="description"
+            app:argType="string" />
     </fragment>
 </navigation>

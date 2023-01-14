@@ -17,7 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class NewsListFragment : Fragment() {
-    val apiKey = "23acad7735bb43409aebb9e559a84523"
+    private val apiKey = "23acad7735bb43409aebb9e559a84523"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +30,10 @@ class NewsListFragment : Fragment() {
 
         fun getTextFromSearch(): String? {
             val text = view.findViewById<EditText>(R.id.editTextSearchText).text.toString()
-            return if (text.isEmpty()) {
+            return text.ifEmpty {
                 Toast.makeText(view.context, "Please Fill Search Field!", Toast.LENGTH_LONG).show()
                 null
-            } else text
+            }
         }
 
         fun loadData() {
