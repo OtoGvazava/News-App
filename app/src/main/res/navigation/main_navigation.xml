@@ -49,4 +49,9 @@
             android:name="description"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/savedArticleFragment"
+        android:name="com.example.newsapp.SavedArticleFragment"
+        android:label="fragment_saved_article"
+        tools:layout="@layout/fragment_saved_article" />
 </navigation>

@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.api.NewsApi
@@ -31,6 +30,7 @@ class NewsListFragment : Fragment() {
         mArticleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
+
 
 
         fun getTextFromSearch(): String? {
@@ -68,6 +68,7 @@ class NewsListFragment : Fragment() {
             loadData()
         }
 
+        loadData()
         return view
     }
 }
