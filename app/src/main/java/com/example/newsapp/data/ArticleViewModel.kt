@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class ArticleViewModel(application: Application): AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<ArticleDTO>>
+    val readAllData: LiveData<List<ArticleDTO>>
     private val repository: ArticleRepository
 
     init {

@@ -43,7 +43,7 @@ class ArticleAdapter(private val articles: Articles, private val mArticleViewMod
         Picasso.get().load(Uri.parse(article.urlToImage)).into(holder.image)
         holder.addBtn.setOnClickListener {
 
-            val articleDTO = ArticleDTO(0, article.author, article.title, article.description, article.url, article.urlToImage, article.content)
+            val articleDTO = ArticleDTO(0, article.author, article.title, article.description, article.url, article.urlToImage, article.content, article.source.name)
 
             mArticleViewModel.addArticle(articleDTO)
             Toast.makeText(context, "Successfully saved Article!", Toast.LENGTH_LONG).show()

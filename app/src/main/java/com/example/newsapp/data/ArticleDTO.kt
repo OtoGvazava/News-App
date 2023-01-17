@@ -14,5 +14,6 @@ data class ArticleDTO(
     val description: String,
     val url: String,
     val urlToImage: String,
-    val content: String
+    val content: String,
+    val source: String
 )

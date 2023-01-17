@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/newsListFragment"
         android:name="com.example.newsapp.NewsListFragment"
-        android:label="fragment_news_list"
-        tools:layout="@layout/fragment_news_list" >
+        android:label="@string/home"
+        tools:layout="@layout/fragment_news_list">
         <action
             android:id="@+id/action_newsListFragment_to_newsDetailFragment"
             app:destination="@id/newsDetailFragment" />
@@ -52,6 +52,10 @@
     <fragment
         android:id="@+id/savedArticleFragment"
         android:name="com.example.newsapp.SavedArticleFragment"
-        android:label="fragment_saved_article"
-        tools:layout="@layout/fragment_saved_article" />
+        android:label="@string/articles"
+        tools:layout="@layout/fragment_saved_article" >
+        <action
+            android:id="@+id/action_savedArticleFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
 </navigation>
