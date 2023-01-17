@@ -10,4 +10,9 @@ class ArticleRepository(private val articleDao: ArticleDao) {
     {
         articleDao.addArticle(articleDTO)
     }
+
+    suspend fun deleteArticle(articleDTO: ArticleDTO)
+    {
+        articleDao.deleteArticle(articleDTO)
+    }
 }

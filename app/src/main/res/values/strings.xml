@@ -5,4 +5,5 @@
     <string name="save_article">Save Article</string>
     <string name="home">Home</string>
     <string name="articles">Articles</string>
+    <string name="delete_saved_article">Delete saved article</string>
 </resources>

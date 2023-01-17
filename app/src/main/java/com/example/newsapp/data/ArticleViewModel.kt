@@ -24,4 +24,11 @@ class ArticleViewModel(application: Application): AndroidViewModel(application) 
             repository.addArticle(articleDTO)
         }
     }
+
+    fun deleteArticle(articleDTO: ArticleDTO)
+    {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteArticle(articleDTO)
+        }
+    }
 }

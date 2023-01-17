@@ -21,13 +21,13 @@ class SavedArticleFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_saved_article, container, false)
+        mArticleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
 
-        val adapter = SavedArticleAdapter()
+        val adapter = SavedArticleAdapter(requireContext(), mArticleViewModel)
         val recyclerView = view.findViewById<RecyclerView>(R.id.savedArticleList)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        mArticleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
         mArticleViewModel.readAllData.observe(viewLifecycleOwner, Observer { article->
             adapter.setData(article)
         })
