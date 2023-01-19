@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import com.example.newsapp.model.Source
 import java.util.*
 
+
 @Entity(tableName = "article_table")
 data class ArticleDTO(
     @PrimaryKey(autoGenerate = true)
@@ -16,4 +17,4 @@ data class ArticleDTO(
     val urlToImage: String,
     val content: String,
     val source: String
-)
+): java.io.Serializable

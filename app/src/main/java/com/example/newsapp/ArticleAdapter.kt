@@ -10,17 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.data.ArticleDTO
 import com.example.newsapp.data.ArticleViewModel
 import com.example.newsapp.model.Articles
-import com.example.newsapp.model.Source
+import com.example.newsapp.notification.NotificationService
 import com.squareup.picasso.Picasso
-import java.util.*
 
-private lateinit var mArticleViewModel: ArticleViewModel
 class ArticleAdapter(private val articles: Articles, private val mArticleViewModel: ArticleViewModel, private val context: Context): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
     class ViewHolder(articleView: View): RecyclerView.ViewHolder(articleView) {
         val title: TextView = articleView.findViewById(R.id.item_title)
@@ -44,9 +41,11 @@ class ArticleAdapter(private val articles: Articles, private val mArticleViewMod
         holder.addBtn.setOnClickListener {
 
             val articleDTO = ArticleDTO(0, article.author, article.title, article.description, article.url, article.urlToImage, article.content, article.source.name)
-
+            val service = NotificationService(context)
             mArticleViewModel.addArticle(articleDTO)
             Toast.makeText(context, "Successfully saved Article!", Toast.LENGTH_LONG).show()
+
+            service.showNotification(articleDTO)
         }
         holder.cardView.setOnClickListener {
             val action = NewsListFragmentDirections.actionNewsListFragmentToNewsDetailFragment(article.description, article.title, article.urlToImage, article.content, article.url, article.author, article.source.name)
@@ -57,4 +56,6 @@ class ArticleAdapter(private val articles: Articles, private val mArticleViewMod
     override fun getItemCount(): Int {
         return articles.articles.size
     }
+
+
 }
