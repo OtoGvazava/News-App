@@ -17,4 +17,4 @@ data class ArticleDTO(
     val urlToImage: String,
     val content: String,
     val source: String
-): java.io.Serializable
+)

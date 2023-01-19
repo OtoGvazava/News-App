@@ -45,7 +45,7 @@ class ArticleAdapter(private val articles: Articles, private val mArticleViewMod
             mArticleViewModel.addArticle(articleDTO)
             Toast.makeText(context, "Successfully saved Article!", Toast.LENGTH_LONG).show()
 
-            service.showNotification(articleDTO)
+            service.showNotification(articleDTO, "You saved Article!")
         }
         holder.cardView.setOnClickListener {
             val action = NewsListFragmentDirections.actionNewsListFragmentToNewsDetailFragment(article.description, article.title, article.urlToImage, article.content, article.url, article.author, article.source.name)

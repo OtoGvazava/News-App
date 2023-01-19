@@ -15,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.data.ArticleDTO
 import com.example.newsapp.data.ArticleViewModel
+import com.example.newsapp.notification.NotificationService
 import com.squareup.picasso.Picasso
 
 class SavedArticleAdapter(private val context: Context, private val mArticleViewModel: ArticleViewModel): RecyclerView.Adapter<SavedArticleAdapter.ViewHolder>() {
@@ -44,6 +45,9 @@ class SavedArticleAdapter(private val context: Context, private val mArticleView
                 mArticleViewModel.deleteArticle(article)
                 Toast.makeText(context, "Deleted ${article.title}", Toast.LENGTH_LONG).show()
                 notifyItemRemoved(position)
+                val service = NotificationService(context)
+
+                service.showNotification(article, "You deleted Article!")
             }
             builder.setNegativeButton("No"){_, _ ->}
             builder.setTitle("Delete ${article.title}?")
