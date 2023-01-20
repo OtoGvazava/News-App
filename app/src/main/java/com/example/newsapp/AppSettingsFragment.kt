@@ -25,7 +25,7 @@ class AppSettingsFragment : Fragment() {
             val timeHour =
                 view.findViewById<EditText>(R.id.editTextTimeHour).text.toString().toLong()
             val articleDownloadRequest =
-                PeriodicWorkRequestBuilder<ArticleDownloadWorker>(timeHour, TimeUnit.MINUTES).build()
+                PeriodicWorkRequestBuilder<ArticleDownloadWorker>(timeHour, TimeUnit.HOURS).build()
             WorkManager.getInstance(view.context).enqueue(articleDownloadRequest)
             Toast.makeText(view.context, "Auto download set successfully!", Toast.LENGTH_LONG).show()
         }
