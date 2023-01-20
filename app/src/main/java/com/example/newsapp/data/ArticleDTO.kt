@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import com.example.newsapp.model.Source
 import java.util.*
 
+
 @Entity(tableName = "article_table")
 data class ArticleDTO(
     @PrimaryKey(autoGenerate = true)

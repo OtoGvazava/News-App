@@ -15,14 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.data.ArticleDTO
 import com.example.newsapp.data.ArticleViewModel
 import com.example.newsapp.model.Articles
+import com.example.newsapp.notification.NotificationService
 import com.squareup.picasso.Picasso
 
-class ArticleAdapter(
-    private val articles: Articles,
-    private val mArticleViewModel: ArticleViewModel,
-    private val context: Context
-) : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
-    class ViewHolder(articleView: View) : RecyclerView.ViewHolder(articleView) {
+class ArticleAdapter(private val articles: Articles, private val mArticleViewModel: ArticleViewModel, private val context: Context): RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
+    class ViewHolder(articleView: View): RecyclerView.ViewHolder(articleView) {
         val title: TextView = articleView.findViewById(R.id.item_title)
         val description: TextView = articleView.findViewById(R.id.item_description)
         val image: ImageView = articleView.findViewById(R.id.item_image)
@@ -42,20 +39,11 @@ class ArticleAdapter(
         holder.description.text = article.description
         Picasso.get().load(Uri.parse(article.urlToImage)).into(holder.image)
         holder.addBtn.setOnClickListener {
-
-            val articleDTO = ArticleDTO(
-                0,
-                article.author,
-                article.title,
-                article.description,
-                article.url,
-                article.urlToImage,
-                article.content,
-                article.source.name
-            )
-
+            val articleDTO = ArticleDTO(0, article.author, article.title, article.description, article.url, article.urlToImage, article.content, article.source.name)
+            val service = NotificationService(context)
             mArticleViewModel.addArticle(articleDTO)
             Toast.makeText(context, "Successfully saved Article!", Toast.LENGTH_LONG).show()
+            service.showNotification(articleDTO, "You saved Article!")
         }
         holder.cardView.setOnClickListener {
             val action = NewsListFragmentDirections.actionNewsListFragmentToNewsDetailFragment(
@@ -74,4 +62,6 @@ class ArticleAdapter(
     override fun getItemCount(): Int {
         return articles.articles.size
     }
+
+
 }

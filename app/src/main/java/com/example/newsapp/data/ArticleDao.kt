@@ -13,4 +13,5 @@ interface ArticleDao {
 
     @Query("SELECT * FROM article_table ORDER BY id DESC")
     fun readAllData(): LiveData<List<ArticleDTO>>
+
 }
