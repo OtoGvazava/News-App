@@ -11,7 +11,6 @@ interface ArticleDao {
     @Delete
     suspend fun deleteArticle(articleDTO: ArticleDTO)
 
-
-    @Query("SELECT * FROM article_table ORDER BY id ASC")
+    @Query("SELECT * FROM article_table ORDER BY id DESC")
     fun readAllData(): LiveData<List<ArticleDTO>>
 }

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/home"
+    <item
         android:id="@+id/newsListFragment"
-        android:label = "@string/home"
         android:icon="@drawable/ic_home"
-        />
-    <item android:title="@string/articles"
-        android:label = "@string/articles"
+        android:label="@string/home"
+        android:title="@string/home" />
+    <item
         android:id="@+id/savedArticleFragment"
-        android:icon="@drawable/ic_folder"/>
+        android:icon="@drawable/ic_folder"
+        android:label="@string/articles"
+        android:title="@string/articles" />
+    <item
+        android:id="@+id/appSettings"
+        android:icon="@drawable/ic_folder"
+        android:label="@string/settings"
+        android:title="@string/settings" />
 </menu>

@@ -24,7 +24,8 @@ class NewsDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_news_detail, container, false)
-        Picasso.get().load(Uri.parse(args.imageUri)).into(view.findViewById<ImageView>(R.id.article_image))
+        Picasso.get().load(Uri.parse(args.imageUri))
+            .into(view.findViewById<ImageView>(R.id.article_image))
         view.findViewById<TextView>(R.id.article_title).text = args.title
         view.findViewById<TextView>(R.id.article_content).text = args.content
         view.findViewById<TextView>(R.id.article_author).text = "Author: " + args.author

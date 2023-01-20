@@ -19,19 +19,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class NewsListFragment : Fragment() {
-    private val apiKey = "23acad7735bb43409aebb9e559a84523"
-
-    private lateinit var mArticleViewModel: ArticleViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_news_list, container, false)
-        mArticleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(view.context)
-
-
 
         fun getTextFromSearch(): String? {
             val text = view.findViewById<EditText>(R.id.editTextSearchText).text.toString()
@@ -44,15 +38,20 @@ class NewsListFragment : Fragment() {
         fun loadData() {
             val searchText = getTextFromSearch()
             if (searchText != null) {
-                val call = NewsApi.requests.getArticles(searchText, apiKey)
+                val call = NewsApi.requests.getArticles(searchText, AppData.apiKey)
                 call.enqueue(object : Callback<Articles> {
                     override fun onResponse(call: Call<Articles>, response: Response<Articles>) {
                         when (response.isSuccessful) {
                             true -> {
                                 val articles = response.body()!!
-                                recyclerView.adapter = ArticleAdapter(articles, mArticleViewModel, requireContext())
+                                recyclerView.adapter =
+                                    ArticleAdapter(articles, AppData.mArticleViewModel, requireContext())
                             }
-                            false -> Toast.makeText(view.context, "Unsuccessfully response", Toast.LENGTH_LONG)
+                            false -> Toast.makeText(
+                                view.context,
+                                "Unsuccessfully response",
+                                Toast.LENGTH_LONG
+                            )
                                 .show()
                         }
                     }

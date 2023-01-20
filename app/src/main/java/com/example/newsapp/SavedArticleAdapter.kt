@@ -17,10 +17,13 @@ import com.example.newsapp.data.ArticleDTO
 import com.example.newsapp.data.ArticleViewModel
 import com.squareup.picasso.Picasso
 
-class SavedArticleAdapter(private val context: Context, private val mArticleViewModel: ArticleViewModel): RecyclerView.Adapter<SavedArticleAdapter.ViewHolder>() {
+class SavedArticleAdapter(
+    private val context: Context,
+    private val mArticleViewModel: ArticleViewModel
+) : RecyclerView.Adapter<SavedArticleAdapter.ViewHolder>() {
     private var articleList = emptyList<ArticleDTO>()
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.item_title)
         val description: TextView = itemView.findViewById(R.id.item_description)
         val image: ImageView = itemView.findViewById(R.id.item_image)
@@ -29,7 +32,9 @@ class SavedArticleAdapter(private val context: Context, private val mArticleView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.saved_article_item, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.saved_article_item, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -40,27 +45,36 @@ class SavedArticleAdapter(private val context: Context, private val mArticleView
 
         holder.deleteBtn.setOnClickListener {
             val builder = AlertDialog.Builder(context)
-            builder.setPositiveButton("Yes"){_, _ ->
+            builder.setPositiveButton("Yes") { _, _ ->
                 mArticleViewModel.deleteArticle(article)
                 Toast.makeText(context, "Deleted ${article.title}", Toast.LENGTH_LONG).show()
                 notifyItemRemoved(position)
             }
-            builder.setNegativeButton("No"){_, _ ->}
+            builder.setNegativeButton("No") { _, _ -> }
             builder.setTitle("Delete ${article.title}?")
             builder.setMessage("Are you sure you want to delete ${article.title}?")
             builder.create().show()
         }
         holder.cardView.setOnClickListener {
-            val action = SavedArticleFragmentDirections.actionSavedArticleFragmentToNewsDetailFragment(article.description, article.title, article.urlToImage, article.content, article.url, article.author, article.source)
+            val action =
+                SavedArticleFragmentDirections.actionSavedArticleFragmentToNewsDetailFragment(
+                    article.description,
+                    article.title,
+                    article.urlToImage,
+                    article.content,
+                    article.url,
+                    article.author,
+                    article.source
+                )
             holder.cardView.findNavController().navigate(action)
         }
     }
 
     override fun getItemCount(): Int {
-        return  articleList.size
+        return articleList.size
     }
 
-    fun setData(articles: List<ArticleDTO>){
+    fun setData(articles: List<ArticleDTO>) {
         this.articleList = articles
         notifyDataSetChanged()
     }
